@@ -1,0 +1,43 @@
+﻿@model List<Picture>
+
+<div class="flex justify-center bg-white p-4 border-b border-gray-300 overflow-scroll w-full">
+	<div class="flex flex-col">
+		@if (Model.Count > 0)
+		{
+			<h4 class="h4 mb-4">Notifications</h4>
+
+			<div>
+				@foreach (var item in Model)
+				{
+					<a href=@Url.Action("DetailedInfo", "Notification", new { Id = item.Id })>
+						<div class="flex items-center border-b-2 pb-4 mb-4 text-base">
+							<div class="flex items-center justify-center w-12 h-12 bg-teal-400 rounded-full text-white">
+								@item.User.UserName.ToUpper().ToCharArray()[0]
+								@*<a class="text-white">@item.user.UserName.ToUpper().ToCharArray()[0]</a>*@
+							</div>
+							<div class="flex flex-col px-2">
+								<p class="normal-case font-medium text-base"><span class="capitalize text-black">@item.User.FirstName @item.User.LastName</span> wants to add a new <span class="text-black">image</span></p>
+								<p class="font-medium text-sm">@DateTime.Now</p>
+							</div>
+							<div class="bg-teal-400 w-2 h-2 rounded-full ml-2 mb-10"></div>
+						</div>
+					</a>
+				}
+			</div>
+		}
+		else
+		{
+			<h4 class="h4 mb-4">There is no notification received</h4>
+		}
+	</div>
+</div>
+
+@*@section Scripts {
+	<script>
+		alert('a')
+		$("a").hover(function () {
+			alert()
+			$(this).css("background-color", "ghostwhite");
+		}
+	</script>
+}*@

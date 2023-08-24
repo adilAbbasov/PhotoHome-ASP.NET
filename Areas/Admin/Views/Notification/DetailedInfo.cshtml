@@ -1,0 +1,48 @@
+﻿@model Picture
+
+<div class="w-full flex justify-center h-fit" style="height: fit-content;">
+	<div class="flex justify-center w-4/5 p-4">
+		<div class="flex items-center justify-center border-2 border-dashed border-gray-500 bg-white w-3/5 p-2 mr-6" style="max-height: 350px">
+			<img src="@Model.ImageUrl" style="max-height: 340px" />
+		</div>
+		<div class="w-2/5 flex flex-col items-center">
+			<div>
+				<h5 class="h5 text-center mb-1">Image details</h5>
+
+				<div class="py-2 border-b-2 border-gray-500 mb-2">
+					<span class="text-gray-600 mr-2">Category:</span> @Model.Category.Name
+				</div>
+
+				<div class="py-2 border-b-2 border-gray-500 mb-2">
+					<span class="text-gray-600 mr-2">Title:</span> @Model.Title
+				</div>
+
+				<div class="py-2 border-b-2 border-gray-500 mb-2">
+					<span class="text-gray-600 mr-2">Description:</span> @Model.Description
+				</div>
+
+				<div class="flex py-2">
+					<div class="w-1/5">
+						<span class="text-gray-600">Tags:</span>
+					</div>
+					<div class="w-4/5">
+						@for (int i = 0; i < ViewBag.Tags.Count; i++)
+						{
+							<span>@ViewBag.Tags[i]</span>
+
+							if (i + 1 != ViewBag.Tags.Count)
+							{
+								<span class="text-gray-500 px-2">|</span>
+							}
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="flex justify-end mt-2">
+				<a href="@Url.Action("Allow", "Notification", Model)" class="btn-shadow mr-2">Allow</a>
+				<a href="@Url.Action("NotAllow", "Notification", Model)" class="btn-danger ml-2">Deny</a>
+			</div>
+		</div>
+	</div>
+</div>
